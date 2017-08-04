@@ -1,0 +1,4 @@
+{
+    "dbConnectionString": "mongodb://localhost/todo",
+    "secret": "secretForTokenEncodingisPeppaPig"
+}
