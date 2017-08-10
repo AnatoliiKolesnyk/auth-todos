@@ -7,12 +7,21 @@ function tokenForUser(user) {
     return jwt.encode({ sub: user.id, iat: timestamp }, config.getSecret());
 }
 
+function isEmail(email) {
+    const rgxp = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return rgxp.test(email);
+}
+
 exports.signup = function(req, res, next) {
     const email = req.body.email;
     const password = req.body.password;
 
     if (!email || !password) {
         return res.status(422).send({ error: "You must provide email and password" });
+    }
+
+    if (!isEmail(email)) {
+        return res.status(422).send({ error: "You must provide correct email" });
     }
 
     // See if user with given email exists:

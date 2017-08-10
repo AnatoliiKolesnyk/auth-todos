@@ -8,12 +8,10 @@ import Signout from './../auth/signout/signout';
 import Signup from './../auth/signup/signup';
 // import Todos from './components/todos/todos';
 
-const browserHistory = createBrowserHistory();
-
-class RouterOutlet extends Component {
+class App extends Component {
     render() {
         return (
-            <BrowserRouter history={ browserHistory }>
+            <BrowserRouter>
                 <div>
                     <Header />
                     <Switch>
@@ -30,4 +28,4 @@ class RouterOutlet extends Component {
 
 // <Route path="feature" component={ RequireAuth(Todos) }/>
 
-export default RouterOutlet;
+export default App;
